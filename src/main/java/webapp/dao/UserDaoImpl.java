@@ -1,7 +1,7 @@
 package webapp.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 import webapp.models.User;
 
 import javax.persistence.EntityManager;
@@ -22,28 +22,36 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void updateUser(Long id, String newFirstName, String newLastName, String newEmail, String newPassword) {
         User user = em.find(User.class, id);
-        if (newFirstName != null) {
+        if (newFirstName != null && !newFirstName.isEmpty()) {
             user.setFirstName(newFirstName);
         }
-        if (newLastName != null) {
+        if (newLastName != null && !newLastName.isEmpty()) {
             user.setLastName(newLastName);
         }
-        if (newEmail != null) {
+        if (newEmail != null && !newEmail.isEmpty()) {
             user.setEmail(newEmail);
         }
-        if (newPassword != null) {
+        if (newPassword != null && !newPassword.isEmpty()) {
             user.setPassword(newPassword);
         }
         em.merge(user);
     }
 
     @Override
-    public void deleteUser(User user) {
-        em.remove(user);
+    public void deleteUser(Long id) {
+        User user = em.find(User.class, id);
+        if (user != null) {
+            em.remove(user);
+        }
     }
 
     @Override
     public List<User> getUsers() {
-        return em.createQuery("select u from User u", User.class).getResultList();
+        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return em.find(User.class, id);
     }
 }

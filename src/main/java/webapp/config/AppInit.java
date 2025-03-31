@@ -1,6 +1,9 @@
 package webapp.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -15,7 +18,8 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-                WebConfig.class
+                WebConfig.class,
+                AppConfig.class
         };
     }
 

@@ -46,6 +46,10 @@ public class AppConfig {
         jpaProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
+        jpaProperties.put("hibernate.connection.useUnicode", env.getProperty("hibernate.connection.useUnicode"));
+        jpaProperties.put("hibernate.connection.characterEncoding", env.getProperty("hibernate.connection.characterEncoding"));
+        jpaProperties.put("hibernate.connection.charSet", env.getProperty("hibernate.connection.charSet"));
+
         return emf;
 
     }
