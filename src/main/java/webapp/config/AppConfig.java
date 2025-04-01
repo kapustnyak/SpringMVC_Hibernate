@@ -50,6 +50,8 @@ public class AppConfig {
         jpaProperties.put("hibernate.connection.characterEncoding", env.getProperty("hibernate.connection.characterEncoding"));
         jpaProperties.put("hibernate.connection.charSet", env.getProperty("hibernate.connection.charSet"));
 
+        emf.setJpaProperties(jpaProperties);
+
         return emf;
 
     }
