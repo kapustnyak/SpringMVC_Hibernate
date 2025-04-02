@@ -11,11 +11,10 @@ import webapp.service.UserService;
 @Controller
 public class UserController {
 
-    @Autowired
     private final UserService userService;
 
 
-
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
